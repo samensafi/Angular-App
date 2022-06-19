@@ -1,0 +1,9 @@
+/*  Separated post-list from post-create            */
+:host {
+  display: block;
+  margin-top: 1rem;
+}
+
+.info-text {
+  text-align: center;
+}
