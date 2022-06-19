@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Output } from "@angular/core";
+
+import { Post } from '../post.model';
 //we turn the component to something angular will understand by adding a decorator to it @Component()
 //we create a component by creating a class
 @Component({
@@ -15,12 +17,13 @@ export class PostCreateComponent {
   enteredContent = '';
   //At first Output decorator added (imported) in line 1 and then added to below property.
   //Used it in app.component.html to listen to postCreated
-  @Output() postCreated = new EventEmitter ();
+  //@Output turn postCreated into an event that you can listen to from the outside (in app.component.ts)
+  @Output() postCreated = new EventEmitter<Post>();
 
 //onAddPost(postInput: HTMLTextAreaElement)
   onAddPost() {
     //this.newPost = this.enteredValue;
-    const post = {
+    const post: Post = {
       title: this.enteredTitle,
       content: this.enteredContent
     };
