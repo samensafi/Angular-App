@@ -5,7 +5,8 @@ import { Component } from "@angular/core";
   //selector allows us to use that component
   //a basic component includes a selector and a template
   selector: 'app-post-create',
-  templateUrl: '../post-create.component.html'
+  templateUrl: '../post-create.component.html',
+  styleUrls: ['./post-create.component.css']
 })
 export class PostCreateComponent {
   enteredValue = '';
