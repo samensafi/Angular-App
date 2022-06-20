@@ -2,16 +2,27 @@
 <!-- [(NgModel)] is a two way binding. It does the setting and reading of a value. It will listen to an input and emit that data to us and store new data in that text area or output it there.   -->
 <!-- We bind [(NgModel)] to a new defined property called enteredContent and it is in ts file -->
 <mat-card>
-  <mat-form-field>
-    <input matInput type="text" [(ngModel)]="enteredTitle">
-  </mat-form-field>
-  <mat-form-field>
-    <textarea matInput rows="6" [(ngModel)]="enteredContent"></textarea>
-  </mat-form-field>
-  <!-- Event Binding -->
-  <button
-  mat-raised-button color="accent"
-    (click)="onAddPost()">Save Post</button>
+<!-- we got rid of [(ngModel)]="enteredTitle" -->
+<!-- #postForm is a reference to the form to help us get access to the form object -->
+  <form (submit)="onAddPost(postForm)" #postForm="ngForm">
+    <mat-form-field>
+<!-- this will register the input as a control to form -->
+<!-- required is for validation to update its form object to check whether it's valid or not  -->
+<!-- #title is a local reference. ngForm above gave access for the entire form. ngModel gives access to the data managed for that input-->
+      <input matInput type="text" name="title" ngModel required minlength="3" #title="ngModel">
+      <mat-error *ngIf="title.invalid">Please enter a post title.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput rows="4" name="content" ngModel required #content="ngModel"></textarea>
+      <mat-error *ngIf="content.invalid">Please enter a post title.</mat-error>
+    </mat-form-field>
+    <!-- Event Binding -->
+    <!-- got rid of (click)="onAddPost()">Save Post</button> -->
+    <button
+      mat-raised-button
+      color="accent"
+      type="submit">Save Post</button>
+  </form>
 </mat-card>
 <!-- String interpolation -->
 <!-- p>{{ newPost }}</p -->

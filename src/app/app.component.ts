@@ -9,6 +9,7 @@ import { Post } from './posts/post.model';
 })
 export class AppComponent {
   //title = 'my-project';
+  //used Post interface
   storedPosts: Post[] = [];
 
   onPostAdded(post) {
