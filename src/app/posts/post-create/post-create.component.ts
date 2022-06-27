@@ -48,5 +48,7 @@ export class PostCreateComponent {
     //this.postCreated.emit(post);
 
     this.postsService.addPost(form.value.title, form.value.content)
+    //clears the user inputs in form after each post
+    form.resetForm();
   }
 }
