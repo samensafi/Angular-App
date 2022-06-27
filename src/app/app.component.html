@@ -2,9 +2,11 @@
 <main> <!-- the line below is event binding to listel to postCreated in post-create.component.ts -->
        <!-- We also want to get the post and store it in a list of posts so we created posts = [] in app.component.ts and onPostAdded pushes the new post into that list -->
        <!-- $event gives access to the data you emitted -->
-  <app-post-create (postCreated)="onPostAdded($event)"></app-post-create>
+  <app-post-create></app-post-create>
+  <!-- line above used to be like this: <app-post-create (postCreated)="onPostAdded($event)"></app-post-create> -->
   <!-- we made posts in post-list.component.ts bindable from outside by adding Input decorator to it -->
-  <app-post-list [posts]="storedPosts" ></app-post-list>
+  <app-post-list></app-post-list>
+  <!-- line above used to be like this:   <app-post-list [posts]="storedPosts" ></app-post-list> -->
 </main>
 <!-- to sum up: in <app-post-create (postCreated)="onPostAdded($event)"></app-post-create>
 we are listening to postCreated Event and adding the in onPostAdded to storedPosts list by calling it here (full method in app.component.ts)
