@@ -3,6 +3,7 @@
 //we create our own type using interface
 //imported in app.component.ts, post-create.component.ts, post-list.component.ts
 export interface Post {
+  id: string;
   title: string;
   content: string;
 }
