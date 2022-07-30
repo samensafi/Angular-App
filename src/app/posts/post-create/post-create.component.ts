@@ -1,7 +1,6 @@
 import { Component} from "@angular/core";
 import { NgForm } from "@angular/forms";
 
-import { Post } from '../post.model';
 import { PostsService } from "../post.service";
 //we turn the component to something angular will understand by adding a decorator to it @Component()
 //we create a component by creating a class

@@ -1,10 +1,13 @@
 //file for implemanting express features
 
 const express = require('express');
-
+const bodyParser = require('body-parser');
 //using express, handling a request for a single special path
 //can be used to create new middlewares
 const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser)
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -14,6 +17,16 @@ app.use((req, res, next) => {
                 "GET, POST, PATCH, DELETE, OPTIONS")
   next();
 });
+
+//for incoming post requests
+app.post('/api/posts', (req, res, next) => {
+  const posts = req.body;
+  console.log(post);
+  res.status(201).json({
+    message: 'Post added successfully'
+  });
+});
+
 
   //doing something with the response
 app.use('/api/posts', (req, res, next) => {

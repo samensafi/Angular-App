@@ -21,10 +21,10 @@ export class PostsService {
   //method for getting a post
   //changes to here we will not affect the original array above since it is private
   getPosts() {
-    this.http.get<{message: string, posts: Post[]}>('http://localhost:3000/api/posts')
-      .subscribe((postData) => {
-        this.posts = postData.posts;
-        this.postsUpdated.next([...this.posts]);
+    this.http.get<{message: string, posts: Post[]}>('http://localhost:3000/api/posts') //line below function gets executed whenever we get a new response
+      .subscribe((postData) => { //we need to listen to any observable if we want to use it. to listen, we subscribe
+        this.posts = postData.posts; //the postData we get from the server is going inside posts array we defined up
+        this.postsUpdated.next([...this.posts]); //inform other parts of our app about this update
       });
   }
 
