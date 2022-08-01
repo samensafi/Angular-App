@@ -7,21 +7,21 @@ const bodyParser = require('body-parser');
 const app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser)
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"
   );
   res.setHeader("Access-Control-Allow-Methods",
-                "GET, POST, PATCH, DELETE, OPTIONS")
+                "GET, POST, PATCH, DELETE, OPTIONS"
+  );
   next();
 });
 
 //for incoming post requests
 app.post('/api/posts', (req, res, next) => {
   const posts = req.body;
-  console.log(post);
+  console.log(posts);
   res.status(201).json({
     message: 'Post added successfully'
   });
@@ -29,7 +29,7 @@ app.post('/api/posts', (req, res, next) => {
 
 
   //doing something with the response
-app.use('/api/posts', (req, res, next) => {
+app.get('/api/posts', (req, res, next) => {
   const posts = [
     { id: '12ew34g',
       title: 'First server-side post',
