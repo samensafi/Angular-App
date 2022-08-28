@@ -20,6 +20,7 @@ export class PostListComponent implements OnInit, OnDestroy {
 
 //used Post interface
 posts: Post[] = [];
+isLoading = false;
 private postsSub: Subscription;
 
 //adding constructor for dependancy injection as we have created a service file (post.service.ts)
@@ -32,9 +33,11 @@ private postsSub: Subscription;
 
   //fetch all the posts
   ngOnInit() {
+    this.isLoading = true;
     this.postsService.getPosts();
     this.postsSub = this.postsService.getPostUpdateListener()
       .subscribe((posts: Post[]) => {
+        this.isLoading = false;
         this.posts = posts;
   });
   }

@@ -21,6 +21,7 @@ export class PostCreateComponent implements OnInit {
   private mode = 'create';
   private postId: string;
   post: Post;
+  isLoading = false;
   //At first Output decorator added (imported) in line 1 and then added to below property.
   //Used it in app.component.html to listen to postCreated
   //@Output in this line that has been removed now:  @Output() postCreated = new EventEmitter<Post>(); used to turn postCreated into an event that you can listen to from the outside (in app.component.ts)
@@ -42,7 +43,9 @@ ngOnInit() {
     if (paramMap.has("postId")) {
       this.mode = "edit";
       this.postId = paramMap.get("postId");
+      this.isLoading = true;
       this.postsService.getPost(this.postId).subscribe(postData => {
+        this.isLoading = false;
         this.post = {id: postData._id, title: postData.title, content: postData.content};
       });
     } else {
@@ -59,6 +62,7 @@ ngOnInit() {
       if (form.invalid) {
         return;
       }
+      this.isLoading = true;
       if (this.mode === "create") {
         this.postsService.addPost(form.value.title, form.value.content);
       } else {
