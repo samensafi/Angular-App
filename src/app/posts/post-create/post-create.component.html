@@ -9,11 +9,11 @@
 <!-- this will register the input as a control to form -->
 <!-- required is for validation to update its form object to check whether it's valid or not  -->
 <!-- #title is a local reference. ngForm above gave access for the entire form. ngModel gives access to the data managed for that input-->
-      <input matInput type="text" name="title" [ngModel]="post.title" required minlength="3" placeholder="Post Title" #title="ngModel">
+      <input matInput type="text" name="title" [ngModel]="post?.title" required minlength="3" placeholder="Post Title" #title="ngModel">
       <mat-error *ngIf="title.invalid">Please enter a post title.</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <textarea matInput rows="4" name="content" [ngModel]="post.content" required placeholder="Post Content" #content="ngModel"></textarea>
+      <textarea matInput rows="4" name="content" [ngModel]="post?.content" required placeholder="Post Content" #content="ngModel"></textarea>
       <mat-error *ngIf="content.invalid">Please enter a post title.</mat-error>
     </mat-form-field>
     <!-- Event Binding -->
