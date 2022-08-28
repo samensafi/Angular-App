@@ -23,6 +23,7 @@ export class PostCreateComponent implements OnInit {
   post: Post;
   form: FormGroup;
   isLoading = false;
+  imagePreview: string;
   //At first Output decorator added (imported) in line 1 and then added to below property.
   //Used it in app.component.html to listen to postCreated
   //@Output in this line that has been removed now:  @Output() postCreated = new EventEmitter<Post>(); used to turn postCreated into an event that you can listen to from the outside (in app.component.ts)
@@ -45,7 +46,7 @@ ngOnInit() {
       validators: [Validators.required, Validators.minLength(3)]
     }),
     content: new FormControl(null, { validators: [Validators.required] }),
-    //image: new FormControl(null, {validators: [Validators.required]})
+    image: new FormControl(null, {validators: [Validators.required]})
   });
   this.route.paramMap.subscribe((paramMap: ParamMap) => {
     if (paramMap.has("postId")) {
@@ -67,7 +68,18 @@ ngOnInit() {
   });
 }
 
-
+onImagePicked(event: Event) {
+  const file = (event.target as HTMLInputElement).files[0];
+  this.form.patchValue({image: file});
+  this.form.get('image').updateValueAndValidity();
+  console.log(file);
+  console.log(this.form);
+  const reader = new FileReader();
+  reader.onload = () => {
+   this.imagePreview = reader.result as string;
+  };
+  reader.readAsDataURL(file);
+}
 
     //this.newPost = this.enteredValue;
     onSavePost() {
