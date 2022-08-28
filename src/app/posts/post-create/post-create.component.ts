@@ -2,7 +2,7 @@ import { Component, OnInit} from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { Post } from "../post.model";
-
+import { mimeType } from "./mime-type.validator";
 import { PostsService } from "../post.service";
 //we turn the component to something angular will understand by adding a decorator to it @Component()
 //we create a component by creating a class
@@ -46,7 +46,10 @@ ngOnInit() {
       validators: [Validators.required, Validators.minLength(3)]
     }),
     content: new FormControl(null, { validators: [Validators.required] }),
-    image: new FormControl(null, {validators: [Validators.required]})
+    image: new FormControl(null, {
+      validators: [Validators.required],
+      asyncValidators: [mimeType]
+    })
   });
   this.route.paramMap.subscribe((paramMap: ParamMap) => {
     if (paramMap.has("postId")) {
@@ -55,7 +58,11 @@ ngOnInit() {
       this.isLoading = true;
       this.postsService.getPost(this.postId).subscribe(postData => {
         this.isLoading = false;
-        this.post = {id: postData._id, title: postData.title, content: postData.content};
+        this.post = {
+          id: postData._id,
+          title: postData.title,
+          content: postData.content
+        };
         this.form.setValue({
           title: this.post.title,
           content: this.post.content
