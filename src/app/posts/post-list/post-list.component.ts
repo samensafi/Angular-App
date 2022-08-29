@@ -1,37 +1,31 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Subscription } from "rxjs";
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { PageEvent } from "@angular/material/paginator";
 
-import { Post } from '../post.model';
+import { Subscription } from 'rxjs';
+
+import { Post } from "../post.model";
 import { PostsService } from "../post.service";
 
 @Component({
-  selector: 'app-post-list',
-  templateUrl: './post-list.component.html',
-  styleUrls: ['./post-list.component.css']
+  selector: "app-post-list",
+  templateUrl: "./post-list.component.html",
+  styleUrls: ["./post-list.component.css"]
 })
-//I want to reach out to service and call the getPosts method in post.service.ts
-//so I used implements OnInit and created its method as well
 export class PostListComponent implements OnInit, OnDestroy {
-//  posts = [
-//    {title: 'First Post', content: 'This is the first post\'s content'},
-//    {title: 'Second Post', content: 'This is the second post\'s content'},
-//    {title: 'Third Post', content: 'This is the third post\'s content'},
-//  ];
+  // posts = [
+  //   { title: "First Post", content: "This is the first post's content" },
+  //   { title: "Second Post", content: "This is the second post's content" },
+  //   { title: "Third Post", content: "This is the third post's content" }
+  // ];
+  posts: Post[] = [];
+  isLoading = false;
+  totalPosts = 10;
+  postsPerPage = 2;
+  pageSizeOptions = [1, 2, 5, 10];
+  private postsSub: Subscription;
 
-//used Post interface
-posts: Post[] = [];
-isLoading = false;
-private postsSub: Subscription;
-
-//adding constructor for dependancy injection as we have created a service file (post.service.ts)
-//constructor is a function which is called whenever angular creates a new instance of this component
-
-//define the service you want have and the type to help angular what to give you
-//we want to store this instance into a property we could have declare a postsService variable of type Post[] above and let this.postsService below = to it to be stored in it
-//however, public keyboard does that. It automatically creates a new property in PostListComponent and store the value in that property
   constructor(public postsService: PostsService) {}
 
-  //fetch all the posts
   ngOnInit() {
     this.isLoading = true;
     this.postsService.getPosts();
@@ -39,7 +33,11 @@ private postsSub: Subscription;
       .subscribe((posts: Post[]) => {
         this.isLoading = false;
         this.posts = posts;
-  });
+      });
+  }
+
+  onChangedPage(pageData: PageEvent) {
+    console.log(pageData);
   }
 
   onDelete(postId: string) {
@@ -50,5 +48,3 @@ private postsSub: Subscription;
     this.postsSub.unsubscribe();
   }
 }
-
-
