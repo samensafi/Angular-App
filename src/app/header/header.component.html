@@ -1,6 +1,13 @@
+<div *ngIf="!userIsAuthenticated" class="info2">
+  <a href="https://www.github.com/samensafi">
+
+  </a>
+</div>
+
 <mat-toolbar color="primary">
   <span>
-    <a routerLink="/">MyMessages</a>
+    <a routerLink="/">MyBuckets</a>
+    <img src="https://cdn-icons-png.flaticon.com/512/15/15147.png" alt="Github" style="width:35px;height:35px;float:left;">
   </span>
   <span class="spacer"></span>
   <ul>
@@ -9,9 +16,6 @@
     </li>
     <li *ngIf="!userIsAuthenticated">
       <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
-    </li>
-    <li *ngIf="!userIsAuthenticated">
-      <a mat-button routerLink="/signup" routerLinkActive="mat-accent">Signup</a>
     </li>
     <li *ngIf="userIsAuthenticated">
       <button mat-button (click)="onLogout()">Logout</button>

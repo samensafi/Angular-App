@@ -17,6 +17,25 @@ mat-spinner {
   color: white;
 }
 
+.info {
+  padding: 20px;
+  background-color: #3e54af;
+  color: white;
+}
+
+.info2 {
+  padding-right: 10px;
+}
+
+.info3 {
+  padding-left: 50px;
+}
+
+.info4 {
+  padding-left: 100px;
+}
+
+
 .closebtn {
   margin-left: 15px;
   color: white;

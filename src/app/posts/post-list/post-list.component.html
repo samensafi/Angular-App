@@ -1,6 +1,30 @@
+<div *ngIf="!userIsAuthenticated" class="info2">
+  <a href="https://www.github.com/samensafi">
+    <img src="https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-512.png" alt="Github" style="width:35px;height:35px;float:left;">
+  </a>
+</div>
+
+<div *ngIf="!userIsAuthenticated" class="info3">
+  <a href="mailto:sam.ensafi@ryerson.ca">
+    <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Email" style="width:35px;height:35px;float:left;">
+  </a>
+</div>
+
+<div *ngIf="!userIsAuthenticated" class="info4">
+  <a href="https://www.linkedin.com/in/samensafi">
+    <img src="https://cdn-icons-png.flaticon.com/512/49/49408.png" alt="Linkedin" style="width:32px;height:32px;float:left;">
+  </a>
+  <br>
+  <br>
+</div>
+
+<div *ngIf="!userIsAuthenticated" class="info">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+  <strong>Bio:</strong> My name is Sam Ensafi. I'm a computer science student at Ryerson University. I always wanted to create a private environment for me and everyone who knows me to share our dicussions and enjoy it. This is why I decided to develop my own discussion sharing website called <strong>SamBucket</strong>.
+</div>
 <div *ngIf="!userIsAuthenticated" class="alert">
   <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-  <strong>Attention!</strong> Please Log in or Sign up to add/edit posts.
+  <strong>Attention!</strong> You must be authenticated to add/edit posts.
 </div>
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 <mat-accordion multi="true" *ngIf="posts.length > 0 && !isLoading">
